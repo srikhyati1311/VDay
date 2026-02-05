@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Valentines Proposal</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+ 	          background-image: url('file:///C:/Users/shrey/OneDrive/Desktop/heartimage1.png');
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            text-align: center;
+            background: powderblue;
+            padding: 200px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        button {
+            padding: 12px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 6px;
+            transition: transform 0.2s ease;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        #btn1 {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #btn2 {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Hello Mr Singh</h2>
+    <h3>Will you be my Valentine?</h3>
+
+    <button id="btn1">Yes</button>
+    <button id="btn2">Change Color</button>
+
+    <div id="output"></div>
+</div>
+
+<script>
+    const btn1 = document.getElementById("btn1");
+    const btn2 = document.getElementById("btn2");
+    const output = document.getElementById("output");
+
+    btn1.addEventListener("click", () => {
+        output.innerText = "Thank you for choosing me again, I love you too 🎉";
+    });
+
+    btn2.addEventListener("click", () => {
+        document.body.style.backgroundColor =
+            document.body.style.backgroundColor === "rgb(255, 235, 238)"
+                ? "#f4f4f4"
+                : "#ffebee";
+    });
+</script>
+
+</body>
+</html>
