@@ -8,19 +8,34 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
- 	          background-image: url('file:///C:/Users/shrey/OneDrive/Desktop/heartimage1.png');
+ 	        background-image: url('file:///C:/Users/shrey/OneDrive/Desktop/heartimage1.png');
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
         }
+        
+       
 
         .container {
+            position: relative;
             text-align: center;
             background: powderblue;
-            padding: 200px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background-image: url('file:///C:/Users/shrey/OneDrive/Desktop/heartimage2.png');
+            padding: 40px;
+            height: 300px;
+            width : 500px;
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(3,0,0,0.1);
+        }
+		 
+        
+        
+        h3 {
+       		font-family: Brush Script MT, cursive;
+       	    font-size: 50px;
+       	    color: red;
         }
 
         button {
@@ -42,46 +57,165 @@
             color: white;
         }
 
-        #btn2 {
-            background-color: #2196F3;
-            color: white;
-        }
-
+         #runaway {
+      position: absolute;
+      padding: 12px 24px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      background: #ff4757;
+      color: white;
+      transition: transform 0.15s ease;
+    }
         #output {
             margin-top: 20px;
-            font-size: 18px;
+            font-size: 16px;
             color: #333;
         }
+        
+        .popup {
+		    position: fixed;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		    height: 100%;
+		    background: rgba(0, 0, 0, 0.5);
+		    display: none;
+		    justify-content: center;
+		    align-items: center;
+		    z-index: 1000;
+		}
+		
+		.popup-content {
+		    background: white;
+		    padding: 30px 40px;
+		    border-radius: 12px;
+		    text-align: center;
+		    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+		}
+		
+		.popup-content p {
+		    font-size: 20px;
+		    margin-bottom: 20px;
+		}
+		
+		#okBtn {
+		    background-color: #e91e63;
+		    color: white;
+		    padding: 10px 20px;
+		    border-radius: 6px;
+		    font-size: 16px;
+		}
+		 #clickme 
+    	 {  background-color: #e91e63;
+		    color: white;
+		    padding: 10px 20px;
+		    border-radius: 6px;
+		    font-size: 16px;
+		    position: absolute;
+    	 bottom: 20px; 
+    	 right: 600px; 
+    	 }
+    	
+		
+		 .img {
+		    position: absolute;
+		    width: 200px;       /* adjust size */
+		    height: 200px;
+		    object-fit: cover;
+		    pointer-events: none; /* so they don’t block clicks */
+		    z-index: 500;
+		    transition: transform 2s linear, top 2s linear, left 2s linear;
+		    display: none;
+		}
+		    /* absolute positions */
+    .img1 { top: 5px; left: 20px; }
+    .img2 { top: 5px; right: 20px; }
+    .img3 { bottom: 70px; left: 20px; }
+    .img4 { bottom: 70px; right: 20px; }	        
     </style>
 </head>
 
 <body>
 
 <div class="container">
-    <h2>Hello Mr Singh</h2>
+
+    <h2>Hello Mr. Singh</h2>
     <h3>Will you be my Valentine?</h3>
 
     <button id="btn1">Yes</button>
-    <button id="btn2">Change Color</button>
+    <button id="runaway">No</button>
 
     <div id="output"></div>
+    <div id="container"></div>
+</div>
+
+     <button id="clickme" onclick="showImages()">Click Me for a Surprise!</button>
+
+  <img src="file:///C:/Users/shrey/OneDrive/Desktop/vday1.jpg" class="img img1">
+  <img src="file:///C:/Users/shrey/OneDrive/Desktop/vday2.JPG" class="img img2">
+  <img src="file:///C:/Users/shrey/OneDrive/Desktop/vday3.jpg" class="img img3">
+  <img src="file:///C:/Users/shrey/OneDrive/Desktop/vday4.JPG" class="img img4">
+
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <p>Yay! 💖 You just made my day!</p>
+        <button id="okBtn">OK</button>
+    </div>
 </div>
 
 <script>
     const btn1 = document.getElementById("btn1");
-    const btn2 = document.getElementById("btn2");
+    
     const output = document.getElementById("output");
+    const container = document.getElementById("container");
+    const popup = document.getElementById("popup");
+    const okBtn = document.getElementById("okBtn");
 
+    const button = document.getElementById("runaway");
+
+    button.addEventListener("mouseenter", moveButton);
+
+    function moveButton() {
+    	const containerRect = container.getBoundingClientRect();
+        const buttonRect = button.getBoundingClientRect();
+
+        const maxX = container.clientWidth - button.offsetWidth;
+        const maxY = container.clientHeight - button.offsetHeight;
+
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
+      button.style.left = `${x}px`;
+      button.style.top = `${y}px`;
+    }
+    
+    
     btn1.addEventListener("click", () => {
+    	popup.style.display = "flex"; 
+    });
+    
+    
+    okBtn.addEventListener("click", () => {
+    	popup.style.display = "none"; 
         output.innerText = "Thank you for choosing me again, I love you too 🎉";
+        const imageUrls = [
+            'file:///C:/Users/shrey/OneDrive/Desktop/vday1.jpg',
+            'file:///C:/Users/shrey/OneDrive/Desktop/vday2.JPG',
+            'file:///C:/Users/shrey/OneDrive/Desktop/vday3.jpg',
+            'file:///C:/Users/shrey/OneDrive/Desktop/vday4.JPG',
+        ];
     });
-
-    btn2.addEventListener("click", () => {
-        document.body.style.backgroundColor =
-            document.body.style.backgroundColor === "rgb(255, 235, 238)"
-                ? "#f4f4f4"
-                : "#ffebee";
-    });
+       
+		setTimeout(() => {
+		    location.reload();
+		}, 10000);
+		
+		function showImages() {
+		    document.querySelectorAll(".img").forEach(img => {
+		      img.style.display = "block";
+		    });
+		  }
 </script>
 
 </body>
